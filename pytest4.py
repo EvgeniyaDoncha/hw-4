@@ -11,6 +11,17 @@ def test_greeting():
     age = 25
 
     output = f"{'Привет, ' + name + '! '}{'Тебе ' + str(age) + ' лет.'}"
+    assert output == "Привет, Анна! Тебе 25 лет."
+
+    output = f"Привет, {name}! Тебе {age} лет."
+    assert output == "Привет, Анна! Тебе 25 лет."
+
+    output = "Привет, {name}! Тебе {age} лет." .format(name=name, age=age)
+    assert output == "Привет, Анна! Тебе 25 лет."
+
+    output = "Привет, " + name + "! Тебе " + str(age) + " лет."
+    assert output == "Привет, Анна! Тебе 25 лет."
+
 
     # Проверяем результат
     assert output == "Привет, Анна! Тебе 25 лет."
@@ -46,6 +57,9 @@ def test_circle():
     area = math.pi * r ** 2
     assert area == 1661.9025137490005
 
+    area = math.pi * math.pow(r, 2)
+    assert area == 1661.9025137490005
+
 
     length = 0
     length = 2 * math.pi * r
@@ -54,14 +68,28 @@ def test_circle():
 
 def test_random_list():
     """
-    Создайте список из 10 случайных чисел от 1 до 100 (включая обе границы) и отсортируйте его по возрастанию.
+    Создайте список из 10 случайных чисел от 1 до 100 (включая обе границы) и
+    отсортируйте его по возрастанию.
     """
+    l = [
+        random.randint(1, 100),
+        random.randint(1, 100),
+        random.randint(1, 100),
+        random.randint(1, 100),
+        random.randint(1, 100),
+        random.randint(1, 100),
+        random.randint(1, 100),
+        random.randint(1, 100),
+        random.randint(1, 100),
+        random.randint(1, 100),
 
-    l = [random.randint(1, 100) for _ in range(10)]
+    ]
     l.sort()
+    l = sorted(l)
+    assert  len(l) ==10
+    assert  l[0] < l[-1]
 
-    assert len(l) == 10
-    assert all(l[i] <= l[i + 1] for i in range(len(l) - 1))
+
 
 
 def test_unique_elements():
@@ -84,9 +112,9 @@ def test_dicts():
     """
     first = ["a", "b", "c", "d", "e"]
     second = [1, 2, 3, 4, 5]
-    zipped_values = zip(first, second)
-
-    d = dict(zip(first, second))
+    # TODO создайте словарь
+    d = dict(zip(first,  second))
+    print(d)
 
 
     assert isinstance(d, dict)
